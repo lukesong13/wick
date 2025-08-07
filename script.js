@@ -81,16 +81,12 @@ inputForm.addEventListener('submit', async (event) => {
 
     try {
 
-        const res = await fetch('/stock', {
+        const res = await fetch('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' + entry.ticker + '&apikey=ZFLQ8S4SFW1ZYYND', {
             method: 'GET',
             headers: {
                'Content-Type' : 'application/json'
-            },
-            body: JSON.stringify({
-                start: entry.start,
-                end: entry.end,
-                symbol: entry.ticker
-            })
+            }
+            
         });
 
         const data = await res.json();
@@ -98,12 +94,8 @@ inputForm.addEventListener('submit', async (event) => {
         console.log(data);
 
     } catch (error) {
-    
         console.error('error fetching earnings: ' + error);
-
     }
-
-
 });
 
 
