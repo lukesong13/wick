@@ -91,11 +91,28 @@ inputForm.addEventListener('submit', async (event) => {
 
         const data = await res.json();
 
-        console.log(data);
+        const DAILY_TIME_SERIES = data['Time Series (Daily)'];
+
+        // console.log(Object.keys(DAILY_TIME_SERIES));
+        // console.log(data);
+        // console.log(data['Time Series (Daily)']);
+
+        const START_DATE = entry.start;
+        const END_DATE = entry.end;
+
+        const FILTERED_ENTRIES = Object.keys(DAILY_TIME_SERIES)
+  				.filter(date => date >= START_DATE && date <= END_DATE)
+  				.reduce((acc, date) => {
+    				acc[date] = DAILY_TIME_SERIES[date];
+    				return acc;
+  			}, {});
+      
+      	console.log(FILTERED_ENTRIES);
 
     } catch (error) {
         console.error('error fetching earnings: ' + error);
     }
 });
+
 
 
