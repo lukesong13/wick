@@ -46,7 +46,13 @@ socket.addEventListener('message', function (event) {
     }
 });
 
-
+## AlphaVantage API Data
+* date
+* open
+* high
+* low
+* close
+* volume
 
 ## Endpoints to Use
 * https://www.alphavantage.co/query?function=FX_DAILY&from_symbol=EUR&to_symbol=USD&apikey=demo

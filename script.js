@@ -101,18 +101,60 @@ inputForm.addEventListener('submit', async (event) => {
         const END_DATE = entry.end;
 
         const FILTERED_ENTRIES = Object.keys(DAILY_TIME_SERIES)
-  				.filter(date => date >= START_DATE && date <= END_DATE)
-  				.reduce((acc, date) => {
-    				acc[date] = DAILY_TIME_SERIES[date];
-    				return acc;
+  			.filter(date => date >= START_DATE && date <= END_DATE)
+  			.reduce((acc, date) => {
+    			acc[date] = DAILY_TIME_SERIES[date];
+    			return acc;
   			}, {});
       
       	console.log(FILTERED_ENTRIES);
+
+        //TABLE START
+        const tableBody = document.getElementById('stock-info-table-body');
+
+        tableBody.innerHTML="";
+
+        Object.entries(FILTERED_ENTRIES).forEach(entry => {
+          
+          console.log(entry[0]);
+          console.log(entry[1]);
+          
+            const row = document.createElement('tr');
+
+            const dateTd = document.createElement('td');
+            dateTd.textContent = entry[0];
+
+            // const openTd = document.createElement('td');
+            // openTd.textContent = FILTERED_ENTRIES.open;
+
+            // const highTd = document.createElement('td');
+            // highTd.textContent = FILTERED_ENTRIES.high;
+
+            // const lowTd = document.createElement('td');
+            // lowTd.textContent = FILTERED_ENTRIES.low;
+
+            // const closeTd = document.createElement('td');
+            // closeTd.textContent = FILTERED_ENTRIES.close;
+
+            // const volumeTd = document.createElement('td');
+            // volumeTd.textContent = FILTERED_ENTRIES.volume;
+
+            row.appendChild(dateTd);
+            // row.appendChild(openTd);
+            // row.appendChild(highTd);
+            // row.appendChild(lowTd);
+            // row.appendChild(closeTd);
+            // row.appendChild(volumeTd);
+  
+
+            tableBody.appendChild(row);
+
+            // document.getElementById('stock-info-table').style.display = 'table';
+        });
 
     } catch (error) {
         console.error('error fetching earnings: ' + error);
     }
 });
-
 
 
