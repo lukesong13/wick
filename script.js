@@ -116,40 +116,50 @@ inputForm.addEventListener('submit', async (event) => {
 
         Object.entries(FILTERED_ENTRIES).forEach(entry => {
           
-          console.log(entry[0]);
-          console.log(entry[1]);
+
+            const data = entry[1];
+            
+            console.log("LOOK HERE");
+            console.log(data["1. open"]);
+
+            console.log(entry[0]);
+            console.log(data);
+
           
             const row = document.createElement('tr');
 
             const dateTd = document.createElement('td');
             dateTd.textContent = entry[0];
 
-            // const openTd = document.createElement('td');
-            // openTd.textContent = FILTERED_ENTRIES.open;
+            const openTd = document.createElement('td');
+            openTd.textContent = data["1. open"];
 
-            // const highTd = document.createElement('td');
-            // highTd.textContent = FILTERED_ENTRIES.high;
+            const highTd = document.createElement('td');
+            highTd.textContent = data["2. high"];
 
-            // const lowTd = document.createElement('td');
-            // lowTd.textContent = FILTERED_ENTRIES.low;
+            const lowTd = document.createElement('td');
+            lowTd.textContent = data["3. low"];
 
-            // const closeTd = document.createElement('td');
-            // closeTd.textContent = FILTERED_ENTRIES.close;
+            const closeTd = document.createElement('td');
+            closeTd.textContent = data["4. close"];
 
-            // const volumeTd = document.createElement('td');
-            // volumeTd.textContent = FILTERED_ENTRIES.volume;
+            const volumeTd = document.createElement('td');
+            volumeTd.textContent = data["5. volume"];
 
             row.appendChild(dateTd);
-            // row.appendChild(openTd);
-            // row.appendChild(highTd);
-            // row.appendChild(lowTd);
-            // row.appendChild(closeTd);
-            // row.appendChild(volumeTd);
+            row.appendChild(openTd);
+            row.appendChild(highTd);
+            row.appendChild(lowTd);
+            row.appendChild(closeTd);
+            row.appendChild(volumeTd);
   
 
             tableBody.appendChild(row);
 
             // document.getElementById('stock-info-table').style.display = 'table';
+
+
+            
         });
 
     } catch (error) {
