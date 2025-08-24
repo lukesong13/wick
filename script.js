@@ -1,8 +1,10 @@
-console.log("test");
+//CONFIG
+const FINNHUB_API_KEY = "d1ld5l1r01qt4thffdogd1ld5l1r01qt4thffdp0";
+const FINNHUB_WEBSOCKET_URL = 'wss://ws.finnhub.io?token=' + FINNHUB_API_KEY;
+const ALPHAVANTAGE_APIKEY = "ZFLQ8S4SFW1ZYYND";
 
-const API_KEY = "d1ld5l1r01qt4thffdogd1ld5l1r01qt4thffdp0";
-const socket = new WebSocket('wss://ws.finnhub.io?token=d1ld5l1r01qt4thffdogd1ld5l1r01qt4thffdp0');
 
+//DOM ELEMENTS
 let aaplPrice = document.getElementById("aapl-price");
 let aaplTime = document.getElementById("aapl-time");
 
@@ -15,7 +17,15 @@ let vooTime = document.getElementById("voo-time");
 let nvdaPrice = document.getElementById("nvda-price");
 let nvdaTime = document.getElementById("nvda-time");
 
+const INPUT_FORM = document.getElementById('input-form');
+
 // Connection opened -> Subscribe
+
+/* =======================
+   Live Prices via Finnhub Web Socket
+======================== */
+
+let socket = new WebSocket(FINNHUB_WEBSOCKET_URL);
 socket.addEventListener('open', function (event) {
     socket.send(JSON.stringify({'type':'subscribe', 'symbol': 'AAPL'}))
     socket.send(JSON.stringify({'type':'subscribe', 'symbol': 'VOO'}))
@@ -31,29 +41,17 @@ socket.addEventListener('message', function (event) {
     let data=JSON.parse(event.data).data[0];
 
     if (data.s == "AAPL") {
-
         aaplPrice.innerHTML=  data.p;
     }
-
     if (data.s == "VOO") {
-
         vooPrice.innerHTML=  data.p;
     }
-
     if (data.s == "NVDA") {
-
         nvdaPrice.innerHTML=  data.p;
     }
-
-
     if (data.s == "BINANCE:BTCUSDT") {
-
         binancePrice.innerHTML=  data.p;
     }
-
-   
-
-
 });
 
 // Unsubscribe
@@ -61,10 +59,11 @@ socket.addEventListener('message', function (event) {
     socket.send(JSON.stringify({'type':'unsubscribe','symbol': symbol}))
 }
 
+ /* =======================
+   Alpha Vantage Date-Ranged Stock Data
+======================== */
 
-const inputForm = document.getElementById('input-form');
-
-inputForm.addEventListener('submit', async (event) => {
+INPUT_FORM.addEventListener('submit', async (event) => {
 
     event.preventDefault();
 
@@ -81,7 +80,7 @@ inputForm.addEventListener('submit', async (event) => {
 
     try {
 
-        const res = await fetch('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' + entry.ticker + '&apikey=ZFLQ8S4SFW1ZYYND', {
+        const res = await fetch('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' + entry.ticker + '&apikey=' + ALPHAVANTAGE_APIKEY, {
             method: 'GET',
             headers: {
                'Content-Type' : 'application/json'
