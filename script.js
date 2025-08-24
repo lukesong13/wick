@@ -67,50 +67,38 @@ INPUT_FORM.addEventListener('submit', async (event) => {
 
     event.preventDefault();
 
-    let tickerInput = document.getElementById('ticker');
-    let startInput = document.getElementById('start');
-    let endInput = document.getElementById('end');
-
-    let entry = {};
-    entry.ticker = tickerInput.value;
-    entry.start = startInput.value;
-    entry.end = endInput.value;
-
-    console.log(entry);
+    let ticker = document.getElementById('ticker').value.trim().toUpperCase();
+    let start = document.getElementById('start').value.trim();
+    let end = document.getElementById('end').value.trim();;
 
     try {
-
-        const res = await fetch('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' + entry.ticker + '&apikey=' + ALPHAVANTAGE_APIKEY, {
+        const res = await fetch('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' + ticker + '&apikey=' + ALPHAVANTAGE_APIKEY, {
             method: 'GET',
             headers: {
                'Content-Type' : 'application/json'
-            }
-            
+            } 
         });
 
         const data = await res.json();
 
         const DAILY_TIME_SERIES = data['Time Series (Daily)'];
 
-        // console.log(Object.keys(DAILY_TIME_SERIES));
-        // console.log(data);
-        // console.log(data['Time Series (Daily)']);
 
-        const START_DATE = entry.start;
-        const END_DATE = entry.end;
-
+      	// Filtering the response from the Alpha Vantage to grab the values based on date range entered by our user
         const FILTERED_ENTRIES = Object.keys(DAILY_TIME_SERIES)
-  			.filter(date => date >= START_DATE && date <= END_DATE)
+  			.filter(date => date >= start && date <= end)
   			.reduce((acc, date) => {
     			acc[date] = DAILY_TIME_SERIES[date];
     			return acc;
   			}, {});
       
       	console.log(FILTERED_ENTRIES);
+        
+        /* =======================
+   			Table Rendering
+		======================== */
 
-        //TABLE START
         const tableBody = document.getElementById('stock-info-table-body');
-
         tableBody.innerHTML="";
 
         Object.entries(FILTERED_ENTRIES).forEach(entry => {
@@ -124,11 +112,7 @@ INPUT_FORM.addEventListener('submit', async (event) => {
             console.log(entry[0]);
             console.log(data);
 
-           
-
-          
             const row = document.createElement('tr');
-
             const dateTd = document.createElement('td');
             dateTd.textContent = entry[0];
 
@@ -153,16 +137,11 @@ INPUT_FORM.addEventListener('submit', async (event) => {
             row.appendChild(lowTd);
             row.appendChild(closeTd);
             row.appendChild(volumeTd);
-  
 
             tableBody.appendChild(row);
 
             // document.getElementById('stock-info-table').style.display = 'table';
-
-            console.log(MAP);
         
-
-
             var chart = new CanvasJS.Chart("chartContainer",
                 {
                     title:{
@@ -195,9 +174,6 @@ INPUT_FORM.addEventListener('submit', async (event) => {
                     ]
                 });
                 chart.render();
-
-
-
         });
 
     } catch (error) {
