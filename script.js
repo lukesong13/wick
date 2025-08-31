@@ -92,6 +92,7 @@ INPUT_FORM.addEventListener('submit', async (event) => {
     			return acc;
   			}, {});
       
+        console.log("FILTERRED ENTRIES");    
       	console.log(FILTERED_ENTRIES);
         
         /* =======================
@@ -101,16 +102,44 @@ INPUT_FORM.addEventListener('submit', async (event) => {
         const tableBody = document.getElementById('stock-info-table-body');
         tableBody.innerHTML="";
 
+
+
+
+        // Array of dates from FILTERED_ENTRIES
+        let dataPointsRender = [ ];
+// { x: new Date(2025,00,01), y:[5198, 5629, 5159, 5385] }
+
+
+
+
         Object.entries(FILTERED_ENTRIES).forEach(entry => {
           
+            //"2025-07-18"
             const date = entry[0];
+            //{1. open: '16.9200', 2. high: '17.0300', 3. low: '16.3600', 4. close: '16.7100', 5. volume: '50169299'}
             const data = entry[1];
-            
+
+            //RENDERING BELOW OBJECT
+            //{x: new Date(2025,00,01),y:[5198, 5629, 5159, 5385]},
+            let dataPointsEntry = {};
+
+          	// Update date (YYYY-MM-DD) to instead be an array of [YYYY, MM, DD]
+          	let updatedDate = date.split("-");
+
+          	// dataPointsEntry.x = date;
+          	dataPointsEntry.x = new Date(updatedDate[0], updatedDate[1]-1, updatedDate[2]);
+          	//dataPointsEntry.y = [5198, 5629, 5159, 5385];
+            dataPointsEntry.y = [Number(data["1. open"]), Number(data["2. high"]), Number(data["3. low"]), Number(data["4. close"])];
+
+          	dataPointsRender.push(dataPointsEntry);
+
             console.log("LOOK HERE");
             console.log(data["1. open"]);
 
-            console.log(entry[0]);
+            console.log(date);
             console.log(data);
+
+           
 
             const row = document.createElement('tr');
             const dateTd = document.createElement('td');
@@ -142,39 +171,69 @@ INPUT_FORM.addEventListener('submit', async (event) => {
 
             // document.getElementById('stock-info-table').style.display = 'table';
         
-            var chart = new CanvasJS.Chart("chartContainer",
-                {
-                    title:{
-                        text: "My Chart"
-                    },
-                    zoomEnabled: true,
-                    axisY: {
-                        includeZero:false,
-                        title: "Prices",
-                        prefix: "$ "
-                    },
-                    axisX: {
-                        interval:2,
-                        intervalType: "day",
-                        labelAngle: -45
-                    },
-                    data: [
-                    {
-                        type: "candlestick",
-                        dataPoints: [ //y: [Open, High ,Low, Close]
-                            {x: new Date(2025,00,01),y:[5198, 5629, 5159, 5385]},
-                            {x: new Date(2025,00,02),y:[5366, 5499, 5135, 5295]},
-                            {x: new Date(2025,00,03),y:[5296, 5378, 5154, 5248]},
-                            {x: new Date(2025,00,04),y:[5254, 5279, 4788, 4924]},
-                            {x: new Date(2025,00,05),y:[4910, 5286, 4770, 5278]},
-                            {x: new Date(2025,00,06),y:[5283, 5348, 5032, 5229]},
-                            {x: new Date(2025,00,07),y:[5220, 5448, 5164, 5258]}
-                        ]
-                    }
-                    ]
-                });
-                chart.render();
+
+            
+            // var chart = new CanvasJS.Chart("chartContainer",
+            //     {
+            //         title:{
+            //             text: "My Chart"
+            //         },
+            //         zoomEnabled: true,
+            //         axisY: {
+            //             includeZero:false,
+            //             title: "Prices",
+            //             prefix: "$ "
+            //         },
+            //         axisX: {
+            //             interval:2,
+            //             intervalType: "day",
+            //             labelAngle: -45
+            //         },
+            //         data: [
+            //         {
+            //             type: "candlestick",
+            //             dataPoints: [ //y: [Open, High ,Low, Close]
+            //                 {x: new Date(2025,00,01),y:[5198, 5629, 5159, 5385]},
+            //                 {x: new Date(2025,00,02),y:[5366, 5499, 5135, 5295]},
+            //                 {x: new Date(2025,00,03),y:[5296, 5378, 5154, 5248]},
+            //                 {x: new Date(2025,00,04),y:[5254, 5279, 4788, 4924]},
+            //                 {x: new Date(2025,00,05),y:[4910, 5286, 4770, 5278]},
+            //                 {x: new Date(2025,00,06),y:[5283, 5348, 5032, 5229]},
+            //                 {x: new Date(2025,00,07),y:[5220, 5448, 5164, 5258]}
+            //             ]
+            //         }
+            //         ]
+            //     });
+            //     chart.render();
         });
+
+
+        var chart = new CanvasJS.Chart("chartContainer",
+            {
+                title:{
+                    text: "My Chart"
+                },
+                zoomEnabled: true,
+                axisY: {
+                    includeZero:false,
+                    title: "Prices",
+                    prefix: "$ "
+                },
+                axisX: {
+                    interval:2,
+                    intervalType: "day",
+                    labelAngle: -45
+                },
+                data: [
+                {
+                    type: "candlestick",
+                    dataPoints: dataPointsRender
+                    
+                }
+                ]
+            });
+            chart.render();
+
 
     } catch (error) {
         console.error('error fetching earnings: ' + error);
