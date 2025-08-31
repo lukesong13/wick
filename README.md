@@ -1,4 +1,5 @@
 # Wick
+# https://celadon-sherbet-2d8b27.netlify.app/
 
 ## Summary
 
@@ -63,3 +64,17 @@ This gives us daily information with the above but goes back 10+ years. If the r
 just use this for all requests.
 
 **NOTE:** Alpha Vantage limites 25 free requests per day.
+
+### TO DO
+* remove stock symbols at top that aren't being updated
+* make table look nicer
+* style entire page??
+* make calendar bigger?
+* label ticker input box
+* rename chart
+* color scheme
+* animation? (spline)
+
+
+
+
