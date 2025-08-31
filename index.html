@@ -14,12 +14,16 @@
 <body>
 
     <form id= "input-form"> 
-
+        
         <input type= "text" placeholder= "ticker" id= "ticker" required> 
-        <input type= "text" placeholder= "start" id= "start" required> 
-        <input type= "text" placeholder= "end" id= "end" required> 
 
-        <button type= "submit"> submit </button>
+        <label for="start">Start date:</label>
+        <input type="date" id="start" name="start">
+      
+        <label for="end">End date:</label>
+        <input type="date" id="end" name="end">
+      
+        <button type="submit">Submit</button>
 
     </form>
 
