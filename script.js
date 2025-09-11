@@ -169,42 +169,7 @@ INPUT_FORM.addEventListener('submit', async (event) => {
 
             tableBody.appendChild(row);
 
-            // document.getElementById('stock-info-table').style.display = 'table';
-        
-
-            
-            // var chart = new CanvasJS.Chart("chartContainer",
-            //     {
-            //         title:{
-            //             text: "My Chart"
-            //         },
-            //         zoomEnabled: true,
-            //         axisY: {
-            //             includeZero:false,
-            //             title: "Prices",
-            //             prefix: "$ "
-            //         },
-            //         axisX: {
-            //             interval:2,
-            //             intervalType: "day",
-            //             labelAngle: -45
-            //         },
-            //         data: [
-            //         {
-            //             type: "candlestick",
-            //             dataPoints: [ //y: [Open, High ,Low, Close]
-            //                 {x: new Date(2025,00,01),y:[5198, 5629, 5159, 5385]},
-            //                 {x: new Date(2025,00,02),y:[5366, 5499, 5135, 5295]},
-            //                 {x: new Date(2025,00,03),y:[5296, 5378, 5154, 5248]},
-            //                 {x: new Date(2025,00,04),y:[5254, 5279, 4788, 4924]},
-            //                 {x: new Date(2025,00,05),y:[4910, 5286, 4770, 5278]},
-            //                 {x: new Date(2025,00,06),y:[5283, 5348, 5032, 5229]},
-            //                 {x: new Date(2025,00,07),y:[5220, 5448, 5164, 5258]}
-            //             ]
-            //         }
-            //         ]
-            //     });
-            //     chart.render();
+            document.getElementById('stock-info').style.display = 'table';
         });
 
 
@@ -239,42 +204,3 @@ INPUT_FORM.addEventListener('submit', async (event) => {
         console.error('error fetching earnings: ' + error);
     }
 });
-
-
-
-
-
-// window.onload = function (){
-//     var chart = new CanvasJS.Chart("chartContainer",
-//         {
-//             title:{
-//                 text: "My Chart"
-//             },
-//             zoomEnabled: true,
-//             axisY: {
-//                 includeZero:false,
-//                 title: "Prices",
-//                 prefix: "$ "
-//             },
-//             axisX: {
-//                 interval:2,
-//                 intervalType: "day",
-//                 labelAngle: -45
-//             },
-//             data: [
-//             {
-//                 type: "candlestick",
-//                 dataPoints: [ //y: [Open, High ,Low, Close]
-//                     {x: new Date(2025,00,01),y:[5198, 5629, 5159, 5385]},
-//                     {x: new Date(2025,00,02),y:[5366, 5499, 5135, 5295]},
-//                     {x: new Date(2025,00,03),y:[5296, 5378, 5154, 5248]},
-//                     {x: new Date(2025,00,04),y:[5254, 5279, 4788, 4924]},
-//                     {x: new Date(2025,00,05),y:[4910, 5286, 4770, 5278]},
-//                     {x: new Date(2025,00,06),y:[5283, 5348, 5032, 5229]},
-//                     {x: new Date(2025,00,07),y:[5220, 5448, 5164, 5258]}
-//                 ]
-//             }
-//             ]
-//         });
-//         chart.render();
-// }
