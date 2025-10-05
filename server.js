@@ -3,16 +3,29 @@ const path = require('path');
 const finnhub = require('finnhub');
 const app = express();
 const port = process.env.PORT || 3000;
+const FINNHUB_API_KEY = 'd1ld5l1r01qt4thffdogd1ld5l1r01qt4thffdp0';
 
 // Serve static files (JS, CSS, images, etc.)
 app.use(express.static(path.join(__dirname)));
 
-const finnhubClient = new finnhub.DefaultApi('d1ld5l1r01qt4thffdogd1ld5l1r01qt4thffdp0')
+const finnhubClient = new finnhub.DefaultApi(FINNHUB_API_KEY);
 
 // Route for root
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
+
+//send req to finn
+
+app.get("/api/quote", async (req, res) => {
+    const { symbol } = req.query;
+    if (!symbol) return res.status(400).json({ error: "symbol required" });
+  
+    const r = await fetch(`https://finnhub.io/api/v1/quote?symbol=${encodeURIComponent(symbol)}&token=${FINNHUB_API_KEY}`);
+    const data = await r.json();
+    res.json(data);
+  });
+
 
 app.get('/stock', (req, res) => {
 

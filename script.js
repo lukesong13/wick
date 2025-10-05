@@ -4,6 +4,8 @@ const FINNHUB_WEBSOCKET_URL = 'wss://ws.finnhub.io?token=' + FINNHUB_API_KEY;
 const ALPHAVANTAGE_APIKEY = "ZFLQ8S4SFW1ZYYND";
 
 
+
+
 //DOM ELEMENTS
 let aaplPrice = document.getElementById("aapl-price");
 let aaplTime = document.getElementById("aapl-time");
@@ -18,6 +20,33 @@ let nvdaPrice = document.getElementById("nvda-price");
 let nvdaTime = document.getElementById("nvda-time");
 
 const INPUT_FORM = document.getElementById('input-form');
+
+
+/* =======================
+   Populate h3 stocks on page load
+======================== */
+
+(async function () {
+    console.log("LOOK HEREEEEEE");
+    let request = await fetch('/api/quote?symbol=AAPL');
+    let data = await request.json();
+    currentPrice = data.c;
+
+    aaplPrice.innerHTML=  currentPrice;
+
+    request = await fetch('/api/quote?symbol=NVDA');
+    data = await request.json();
+    currentPrice = data.c;
+
+    nvdaPrice.innerHTML=  currentPrice;
+
+    request = await fetch('/api/quote?symbol=VOO');
+    data = await request.json();
+    currentPrice = data.c;
+
+    vooPrice.innerHTML=  currentPrice;
+
+  })();
 
 // Connection opened -> Subscribe
 
@@ -172,11 +201,19 @@ INPUT_FORM.addEventListener('submit', async (event) => {
             document.getElementById('stock-info').style.display = 'table';
         });
 
+         /* =======================
+   			Chart Rendering
+		======================== */
+
 
         var chart = new CanvasJS.Chart("chartContainer",
             {
+                animationEnabled : true,
+
+                theme: "dark1",
+
                 title:{
-                    text: "My Chart"
+                    text: "'99% of gamblers quit before they win big'"
                 },
                 zoomEnabled: true,
                 axisY: {

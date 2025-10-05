@@ -1,3 +1,25 @@
+/* ---------- Theme ---------- */
+:root{
+  --bg: #0b0d10;
+  --panel: rgba(255,255,255,0.06);
+  --panel-2: rgba(255,255,255,0.03);
+  --border: rgba(255,255,255,0.10);
+  --text: #0eff00;
+  --muted: #9AA4AF;
+  --accent: #5CE3B9;
+  --accent-2: #7AA7FF;
+  --up: #2ED078;
+  --down: #F25F5C;
+  --focus: rgba(124,194,255,0.35);
+  --shadow: 0 10px 30px rgba(0,0,0,.45);
+  --radius: 16px;
+}
+
+html {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
 h1 {
     text-align: center;
 }
@@ -22,6 +44,11 @@ h1 {
   #stock-info th {
     background-color: darkolivegreen;
     color: white;
+  }
+
+  #stock-info-table-body {
+    color: black;
+    background-color: #7c7c7c;
   }
 
   #stock-info tbody tr:nth-child(even) {
