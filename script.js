@@ -224,6 +224,9 @@ INPUT_FORM.addEventListener('submit', async (event) => {
                 },
                 data: [
                 {
+                    color: "#2ED078", // up wicks
+                    risingColor: "#2ED078",
+                    fallingColor: "#F25F5C",
                     type: "candlestick",
                     dataPoints: dataPointsRender
                     
