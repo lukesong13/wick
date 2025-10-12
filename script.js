@@ -26,29 +26,27 @@ const INPUT_FORM = document.getElementById('input-form');
    Populate h3 stocks on page load
 ======================== */
 
-(async function () {
+  (async function () {
     console.log("LOOK HEREEEEEE");
-    let request = await fetch('/api/quote?symbol=AAPL');
+    let request = await fetch(`https://finnhub.io/api/v1/quote?symbol=AAPL&token=${FINNHUB_API_KEY}`);
     let data = await request.json();
     currentPrice = data.c;
 
     aaplPrice.innerHTML=  currentPrice;
 
-    request = await fetch('/api/quote?symbol=NVDA');
+    request = await fetch(`https://finnhub.io/api/v1/quote?symbol=NVDA&token=${FINNHUB_API_KEY}`);
     data = await request.json();
     currentPrice = data.c;
 
     nvdaPrice.innerHTML=  currentPrice;
 
-    request = await fetch('/api/quote?symbol=VOO');
+    request = await fetch(`https://finnhub.io/api/v1/quote?symbol=VOO&token=${FINNHUB_API_KEY}`);
     data = await request.json();
     currentPrice = data.c;
 
     vooPrice.innerHTML=  currentPrice;
 
   })();
-
-// Connection opened -> Subscribe
 
 /* =======================
    Live Prices via Finnhub Web Socket
@@ -137,8 +135,6 @@ INPUT_FORM.addEventListener('submit', async (event) => {
         // Array of dates from FILTERED_ENTRIES
         let dataPointsRender = [ ];
 // { x: new Date(2025,00,01), y:[5198, 5629, 5159, 5385] }
-
-
 
 
         Object.entries(FILTERED_ENTRIES).forEach(entry => {
