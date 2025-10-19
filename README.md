@@ -70,6 +70,17 @@ just use this for all requests.
 * change table color scheme to dark mode (text to white, colors darker, border black)
 * make top of page ("WICK" h1) nicer
 
+* Spline animation updates
+	* Seamless spline to website color transition
+  * Update default zoom  
+	* Change all/some reds to greens?
+  * Custom spline animation???
+* change table color scheme to dark mode (text to white, colors darker, border black)
+* make top of page ("WICK" h1) nicer
+* make form larger and look nicer
+* constant horizontal scroll of commonly viewed stocks
+* Identify bull markets
+
 
 
 
