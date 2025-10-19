@@ -66,12 +66,7 @@ just use this for all requests.
 **NOTE:** Alpha Vantage limites 25 free requests per day.
 
 ### TO DO
-* style entire page??
-* make calendar bigger?
-* color scheme
 * animation? (spline)
-* color code candle chart with red/green
-* make h3 displays look nicer (aapl, nvda, voo, etc)
 * change table color scheme to dark mode (text to white, colors darker, border black)
 * make top of page ("WICK" h1) nicer
 

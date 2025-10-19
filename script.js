@@ -209,7 +209,7 @@ INPUT_FORM.addEventListener('submit', async (event) => {
                 theme: "dark1",
 
                 title:{
-                    text: "'99% of gamblers quit before they win big'"
+                    text: "'99% of gamblers quit before they win big'",
                 },
                 zoomEnabled: true,
                 axisY: {
@@ -224,7 +224,7 @@ INPUT_FORM.addEventListener('submit', async (event) => {
                 },
                 data: [
                 {
-                    color: "#2ED078", // up wicks
+                    color: "#867cb1ff", // up wicks
                     risingColor: "#2ED078",
                     fallingColor: "#F25F5C",
                     type: "candlestick",

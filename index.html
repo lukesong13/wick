@@ -13,6 +13,11 @@
 
 <body>
 
+    <div class="animation-container">
+      <iframe class="spline-embed no-interact" src="https://my.spline.design/clonercubesgenerativecopy-ekp13JZD10rYF64BJJ716etZ/"
+          frameborder="0"></iframe>    
+    </div>
+
     <h1>WICK</h1>
 
     <form id= "input-form"> 
@@ -29,21 +34,28 @@
 
     </form>
 
-    <h3 id="aapl"> AAPL </h3>
-    <p id="aapl-price">  </p>
-    <p id="aapl-time">  </p>
-
-    <h3 id="binance"> BINANCE </h3>
-    <p id="binance-price">  </p>
-    <p id="binance-time">  </p>
-
-    <h3 id="voo"> VOO </h3>
-    <p id="voo-price">  </p>
-    <p id="voo-time">  </p>
-
-    <h3 id="nvda"> NVDA </h3>
-    <p id="nvda-price">  </p>
-    <p id="nvda-time">  </p>
+   
+    <div class="stock-grid">
+      <div class="stock-card">
+        <h3 id="aapl">AAPL</h3>
+        <p id="aapl-price"></p>
+      </div>
+    
+      <div class="stock-card">
+        <h3 id="binance">BINANCE</h3>
+        <p id="binance-price"></p>
+      </div>
+    
+      <div class="stock-card">
+        <h3 id="voo">VOO</h3>
+        <p id="voo-price"></p>
+      </div>
+    
+      <div class="stock-card">
+        <h3 id="nvda">NVDA</h3>
+        <p id="nvda-price"></p>
+      </div>
+    </div>
     
     <div id="chartContainer" style="height: 300px; width: 100%;"></div>
 

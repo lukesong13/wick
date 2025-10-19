@@ -6,7 +6,7 @@
   --border: rgba(255,255,255,0.10);
   --text: #0eff00;
   --muted: #9AA4AF;
-  --accent: #5CE3B9;
+  --accent: #37f77e;
   --accent-2: #7AA7FF;
   --up: #2ED078;
   --down: #F25F5C;
@@ -20,8 +20,71 @@ html {
   color: var(--text);
 }
 
+iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.spline-embed.no-interact { 
+  pointer-events: none; 
+}
+
+
+.animation-container {
+  width: 100%;
+  max-width: 1500px;
+  height: 500px;
+  border-radius: 16px;
+  margin: auto;
+  overflow: hidden;
+  box-shadow: 0 0 20px var(--text);
+}
+
 h1 {
     text-align: center;
+}
+
+.stock-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 18px;
+  margin: 2em auto;
+  max-width: 800px;
+}
+
+.stock-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Ticker symbol */
+.stock-card h3 {
+  margin: 0;
+  font-size: 1.4em;
+  letter-spacing: 1px;
+  color: var(--accent);
+  text-shadow: 0 0 4px var(--accent);
+}
+
+/* When hovering over a card, uses the transition from .stock-card */
+.stock-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 20px var(--accent-2);
+}
+
+/* Price text */
+.stock-card p {
+  margin: 8px 0 0;
+  font-size: 1.6em;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 #stock-info {
