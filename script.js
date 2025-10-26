@@ -205,11 +205,13 @@ INPUT_FORM.addEventListener('submit', async (event) => {
         var chart = new CanvasJS.Chart("chartContainer",
             {
                 animationEnabled : true,
-
+                backgroundColor: "000000",
                 theme: "dark1",
+              
 
                 title:{
-                    text: "'99% of gamblers quit before they win big'",
+                    text: "99% of gamblers quit before they win big",
+                    color: "0eff00"
                 },
                 zoomEnabled: true,
                 axisY: {

@@ -63,21 +63,10 @@ This gives us daily information with open, high, low, close and goes back ~4 mon
 This gives us daily information with the above but goes back 10+ years. If the response time is insignificant, we may 
 just use this for all requests.
 
-**NOTE:** Alpha Vantage limites 25 free requests per day.
+**NOTE:** Alpha Vantage limits 25 free requests per day.
 
 ### TO DO
-* animation? (spline)
-* change table color scheme to dark mode (text to white, colors darker, border black)
 * make top of page ("WICK" h1) nicer
-
-* Spline animation updates
-	* Seamless spline to website color transition
-  * Update default zoom  
-	* Change all/some reds to greens?
-  * Custom spline animation???
-* change table color scheme to dark mode (text to white, colors darker, border black)
-* make top of page ("WICK" h1) nicer
-* make form larger and look nicer
 * constant horizontal scroll of commonly viewed stocks
 * Identify bull markets
 
