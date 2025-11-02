@@ -2,6 +2,8 @@
 const FINNHUB_API_KEY = "d1ld5l1r01qt4thffdogd1ld5l1r01qt4thffdp0";
 const FINNHUB_WEBSOCKET_URL = 'wss://ws.finnhub.io?token=' + FINNHUB_API_KEY;
 const ALPHAVANTAGE_APIKEY = "ZFLQ8S4SFW1ZYYND";
+const SYMBOLS = ["AAPL","MSFT","NVDA","AMZN","GOOGL","META","TSLA","AMD","NFLX","VOO"];
+let pricesPerSymbol = [0,0,0,0,0,0,0,0,0,0];
 
 
 
@@ -55,10 +57,18 @@ const INPUT_FORM = document.getElementById('input-form');
 let socket = new WebSocket(FINNHUB_WEBSOCKET_URL);
 socket.addEventListener('open', function (event) {
     socket.send(JSON.stringify({'type':'subscribe', 'symbol': 'AAPL'}))
-    socket.send(JSON.stringify({'type':'subscribe', 'symbol': 'VOO'}))
+    socket.send(JSON.stringify({'type':'subscribe', 'symbol': 'MSFT'}))
     socket.send(JSON.stringify({'type':'subscribe', 'symbol': 'NVDA'}))
+    socket.send(JSON.stringify({'type':'subscribe', 'symbol': 'AMZN'}))
+    socket.send(JSON.stringify({'type':'subscribe', 'symbol': 'GOOGL'}))
+    socket.send(JSON.stringify({'type':'subscribe', 'symbol': 'META'}))
+    socket.send(JSON.stringify({'type':'subscribe', 'symbol': 'TSLA'}))
+    socket.send(JSON.stringify({'type':'subscribe', 'symbol': 'AMD'}))
+    socket.send(JSON.stringify({'type':'subscribe', 'symbol': 'NFLX'}))
+    socket.send(JSON.stringify({'type':'subscribe', 'symbol': 'VOO'}))
     socket.send(JSON.stringify({'type':'subscribe', 'symbol': 'BINANCE:BTCUSDT'}))
     // socket.send(JSON.stringify({'type':'subscribe', 'symbol': 'IC MARKETS:1'}))
+    //["AAPL","MSFT","NVDA","AMZN","GOOGL","META","TSLA","AMD","NFLX","VOO"];
 });
 
 // Listen for messages
@@ -68,13 +78,34 @@ socket.addEventListener('message', function (event) {
     let data=JSON.parse(event.data).data[0];
 
     if (data.s == "AAPL") {
-        aaplPrice.innerHTML=  data.p;
+        pricesPerSymbol[0]=  data.p;
     }
-    if (data.s == "VOO") {
-        vooPrice.innerHTML=  data.p;
+    if (data.s == "MSFT") {
+        pricesPerSymbol[1]=  data.p;
     }
     if (data.s == "NVDA") {
-        nvdaPrice.innerHTML=  data.p;
+        pricesPerSymbol[2]=  data.p;
+    }
+     if (data.s == "AMZN") {
+        pricesPerSymbol[3]=  data.p;
+    }
+     if (data.s == "GOOGL") {
+        pricesPerSymbol[4]=  data.p;
+    }
+     if (data.s == "META") {
+        pricesPerSymbol[5]=  data.p;
+    }
+     if (data.s == "TSLA") {
+        pricesPerSymbol[6]=  data.p;
+    }
+     if (data.s == "AMD") {
+        pricesPerSymbol[7]=  data.p;
+    }
+     if (data.s == "NFLX") {
+        pricesPerSymbol[8]=  data.p;
+    }
+     if (data.s == "VOO") {
+        pricesPerSymbol[9]=  data.p;
     }
     if (data.s == "BINANCE:BTCUSDT") {
         binancePrice.innerHTML=  data.p;
@@ -242,3 +273,24 @@ INPUT_FORM.addEventListener('submit', async (event) => {
         console.error('error fetching earnings: ' + error);
     }
 });
+
+         /* =======================
+   			Ticker Scroll
+		======================== */
+
+ (async function () {
+    console.log("STOCK SYMBOLS FOR THE SCROLL");
+
+    for (let i=0; i<SYMBOLS.length; i++) {
+        let request = await fetch(`https://finnhub.io/api/v1/quote?symbol=${SYMBOLS[i]}&token=${FINNHUB_API_KEY}`);
+        let data = await request.json();
+        let currentPrice = data.c;
+        pricesPerSymbol[i] = currentPrice;
+    }
+
+    console.log(pricesPerSymbol);
+
+
+ })();
+
+ 

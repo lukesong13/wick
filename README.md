@@ -69,6 +69,20 @@ just use this for all requests.
 * make top of page ("WICK" h1) nicer
 * constant horizontal scroll of commonly viewed stocks
 * Identify bull markets
+* Use FinnHub's API to grab stock data for  10 stocks using this endpoint: 
+	* https://finnhub.io/api/v1/quote?symbol={STOCK_SYMBOL}&token=${FINNHUB_API_KEY}
+
+* In index.html we'll have a separate \<div> containing these sections
+
+* Identify how to animate the scroll
+
+## Horizontal Ticker Scroll
+1. Update script.js to populate current prices for 10 symbols
+2. Update existing Web Socket to subscribe to all 10 symbols
+3. Populate the data into HTML elements
+4. Handle the scroll and placing of elements
+5. Keep scroll as overlay on bottom of page/screen (doesnt disappear when scrolling)
+6. Only keep scroll if screen size is large enough (disable for mobile)
 
 
 
