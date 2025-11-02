@@ -9,6 +9,9 @@ let pricesPerSymbol = [0,0,0,0,0,0,0,0,0,0];
 
 
 //DOM ELEMENTS
+
+const INPUT_FORM = document.getElementById('input-form');
+
 let aaplPrice = document.getElementById("aapl-price");
 let aaplTime = document.getElementById("aapl-time");
 
@@ -21,7 +24,17 @@ let vooTime = document.getElementById("voo-time");
 let nvdaPrice = document.getElementById("nvda-price");
 let nvdaTime = document.getElementById("nvda-time");
 
-const INPUT_FORM = document.getElementById('input-form');
+let aaplScroll = document.getElementById("aapl-scroll");
+let msftScroll = document.getElementById("msft-scroll");
+let nvdaScroll = document.getElementById("nvda-scroll");
+let amznScroll = document.getElementById("amzn-scroll");
+let googlScroll = document.getElementById("googl-scroll");
+let metaScroll = document.getElementById("meta-scroll");
+let tslaScroll = document.getElementById("tsla-scroll");
+let amdScroll = document.getElementById("amd-scroll");
+let nflxScroll = document.getElementById("nflx-scroll");
+let vooScroll = document.getElementById("voo-scroll");
+
 
 
 /* =======================
@@ -79,33 +92,43 @@ socket.addEventListener('message', function (event) {
 
     if (data.s == "AAPL") {
         pricesPerSymbol[0]=  data.p;
+        aaplScroll.innerHTML= " |";
     }
     if (data.s == "MSFT") {
         pricesPerSymbol[1]=  data.p;
+        msftScroll.innerHTML= " |";
     }
     if (data.s == "NVDA") {
         pricesPerSymbol[2]=  data.p;
+        nvdaScroll.innerHTML= " |";
     }
      if (data.s == "AMZN") {
         pricesPerSymbol[3]=  data.p;
+        amznScroll.innerHTML= " |";
     }
      if (data.s == "GOOGL") {
         pricesPerSymbol[4]=  data.p;
+        googlScroll.innerHTML= " |";
     }
      if (data.s == "META") {
         pricesPerSymbol[5]=  data.p;
+        metaScroll.innerHTML= " |";
     }
      if (data.s == "TSLA") {
         pricesPerSymbol[6]=  data.p;
+        tslaScroll.innerHTML= " |";
     }
      if (data.s == "AMD") {
         pricesPerSymbol[7]=  data.p;
+        amdScroll.innerHTML= " |";
     }
      if (data.s == "NFLX") {
         pricesPerSymbol[8]=  data.p;
+        nflxScroll.innerHTML= " |";
     }
      if (data.s == "VOO") {
         pricesPerSymbol[9]=  data.p;
+        vooScroll.innerHTML= " |";
     }
     if (data.s == "BINANCE:BTCUSDT") {
         binancePrice.innerHTML=  data.p;
