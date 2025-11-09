@@ -34,6 +34,8 @@ let tslaScroll = document.getElementById("tsla-scroll");
 let amdScroll = document.getElementById("amd-scroll");
 let nflxScroll = document.getElementById("nflx-scroll");
 let vooScroll = document.getElementById("voo-scroll");
+let binanceScroll = document.getElementById("binance-scroll");
+
 
 
 
@@ -92,46 +94,47 @@ socket.addEventListener('message', function (event) {
 
     if (data.s == "AAPL") {
         pricesPerSymbol[0]=  data.p;
-        aaplScroll.innerHTML= " |";
+        aaplScroll.innerHTML= "AAPL: " + data.p + " |";
     }
     if (data.s == "MSFT") {
         pricesPerSymbol[1]=  data.p;
-        msftScroll.innerHTML= " |";
+        msftScroll.innerHTML= "MSFT: " + data.p + " |";
     }
     if (data.s == "NVDA") {
         pricesPerSymbol[2]=  data.p;
-        nvdaScroll.innerHTML= " |";
+        nvdaScroll.innerHTML= "NVDA: " + data.p + " |";
     }
      if (data.s == "AMZN") {
         pricesPerSymbol[3]=  data.p;
-        amznScroll.innerHTML= " |";
+        amznScroll.innerHTML= "AMZN: " + data.p + " |";
     }
      if (data.s == "GOOGL") {
         pricesPerSymbol[4]=  data.p;
-        googlScroll.innerHTML= " |";
+        googlScroll.innerHTML= "GOOGL: " + data.p + " |";
     }
      if (data.s == "META") {
         pricesPerSymbol[5]=  data.p;
-        metaScroll.innerHTML= " |";
+        metaScroll.innerHTML= "META: " + data.p + " |";
     }
      if (data.s == "TSLA") {
         pricesPerSymbol[6]=  data.p;
-        tslaScroll.innerHTML= " |";
+        tslaScroll.innerHTML= "TSLA: " + data.p + " |";
     }
      if (data.s == "AMD") {
         pricesPerSymbol[7]=  data.p;
-        amdScroll.innerHTML= " |";
+        amdScroll.innerHTML= "AMD: " + data.p + " |";
     }
      if (data.s == "NFLX") {
         pricesPerSymbol[8]=  data.p;
-        nflxScroll.innerHTML= " |";
+        nflxScroll.innerHTML= "NFLX: " + data.p + " |";
     }
      if (data.s == "VOO") {
         pricesPerSymbol[9]=  data.p;
-        vooScroll.innerHTML= " |";
+        vooScroll.innerHTML= "VOO: " + data.p + " |";
     }
     if (data.s == "BINANCE:BTCUSDT") {
         binancePrice.innerHTML=  data.p;
+        binanceScroll.innerHTML= "BINANCE: " + data.p + " |";
     }
 });
 
@@ -312,6 +315,18 @@ INPUT_FORM.addEventListener('submit', async (event) => {
     }
 
     console.log(pricesPerSymbol);
+
+    aaplScroll.innerHTML= "AAPL: " + pricesPerSymbol[0] + " |";
+    msftScroll.innerHTML= "MSFT: " + pricesPerSymbol[1] + " |";
+    nvdaScroll.innerHTML= "NVDA: " + pricesPerSymbol[2] + " |";
+    amznScroll.innerHTML= "AMZN: " + pricesPerSymbol[3] + " |";
+    googlScroll.innerHTML= "GOOGL: " + pricesPerSymbol[4] + " |";
+    metaScroll.innerHTML= "META: " + pricesPerSymbol[5] + " |";
+    tslaScroll.innerHTML= "TSLA: " + pricesPerSymbol[6] + " |";
+    amdScroll.innerHTML= "AMD: " + pricesPerSymbol[7] + " |";
+    nflxScroll.innerHTML= "NFLX: " + pricesPerSymbol[8] + " |";
+    vooScroll.innerHTML= "VOO: " + pricesPerSymbol[9] + " |";
+    
 
 
  })();
