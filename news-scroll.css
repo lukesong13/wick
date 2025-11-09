@@ -1,0 +1,25 @@
+
+
+.ticker{
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: linear-gradient(180deg, var(--panel), var(--panel-2));
+    box-shadow: var(--shadow);
+    margin: 14px auto 6px;
+    max-width: 1100px;
+    height: 44px;
+}
+
+.ticker__track{
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    white-space: nowrap;
+    will-change: transform;
+    /* animation speed is set via JS with --ticker-speed (seconds) */
+    animation: ticker-scroll linear infinite var(--ticker-speed, 30s);
+    padding: 0 12px;
+}
+  
