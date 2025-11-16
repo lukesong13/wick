@@ -83,7 +83,7 @@ just use this for all requests.
 4. Handle the scroll and placing of elements
 5. Keep scroll as overlay on bottom of page/screen (doesnt disappear when scrolling)
 6. Only keep scroll if screen size is large enough (disable for mobile)
-
+7. handle actual scrolling feature
 
 
 
