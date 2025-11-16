@@ -1,3 +1,5 @@
+import { elements } from "./dom.js";
+
 //CONFIG
 const FINNHUB_API_KEY = "d1ld5l1r01qt4thffdogd1ld5l1r01qt4thffdp0";
 const FINNHUB_WEBSOCKET_URL = 'wss://ws.finnhub.io?token=' + FINNHUB_API_KEY;
@@ -10,31 +12,28 @@ let pricesPerSymbol = [0,0,0,0,0,0,0,0,0,0];
 
 //DOM ELEMENTS
 
-const INPUT_FORM = document.getElementById('input-form');
+// const INPUT_FORM = document.getElementById('input-form');
 
-let aaplPrice = document.getElementById("aapl-price");
-let aaplTime = document.getElementById("aapl-time");
+// let aaplPrice = document.getElementById("aapl-price");
 
-let binancePrice = document.getElementById("binance-price");
-let binanceTime = document.getElementById("binance-time");
+// let binancePrice = document.getElementById("binance-price");
 
-let vooPrice = document.getElementById("voo-price");
-let vooTime = document.getElementById("voo-time");
 
-let nvdaPrice = document.getElementById("nvda-price");
-let nvdaTime = document.getElementById("nvda-time");
+// let vooPrice = document.getElementById("voo-price");
 
-let aaplScroll = document.getElementById("aapl-scroll");
-let msftScroll = document.getElementById("msft-scroll");
-let nvdaScroll = document.getElementById("nvda-scroll");
-let amznScroll = document.getElementById("amzn-scroll");
-let googlScroll = document.getElementById("googl-scroll");
-let metaScroll = document.getElementById("meta-scroll");
-let tslaScroll = document.getElementById("tsla-scroll");
-let amdScroll = document.getElementById("amd-scroll");
-let nflxScroll = document.getElementById("nflx-scroll");
-let vooScroll = document.getElementById("voo-scroll");
-let binanceScroll = document.getElementById("binance-scroll");
+// let nvdaPrice = document.getElementById("nvda-price");
+
+// let aaplScroll = document.getElementById("aapl-scroll");
+// let msftScroll = document.getElementById("msft-scroll");
+// let nvdaScroll = document.getElementById("nvda-scroll");
+// let amznScroll = document.getElementById("amzn-scroll");
+// let googlScroll = document.getElementById("googl-scroll");
+// let metaScroll = document.getElementById("meta-scroll");
+// let tslaScroll = document.getElementById("tsla-scroll");
+// let amdScroll = document.getElementById("amd-scroll");
+// let nflxScroll = document.getElementById("nflx-scroll");
+// let vooScroll = document.getElementById("voo-scroll");
+// let binanceScroll = document.getElementById("binance-scroll");
 
 
 
@@ -47,21 +46,21 @@ let binanceScroll = document.getElementById("binance-scroll");
     console.log("LOOK HEREEEEEE");
     let request = await fetch(`https://finnhub.io/api/v1/quote?symbol=AAPL&token=${FINNHUB_API_KEY}`);
     let data = await request.json();
-    currentPrice = data.c;
+    let currentPrice = data.c;
 
-    aaplPrice.innerHTML=  currentPrice;
+    elements.aaplPrice.innerHTML=  currentPrice;
 
     request = await fetch(`https://finnhub.io/api/v1/quote?symbol=NVDA&token=${FINNHUB_API_KEY}`);
     data = await request.json();
     currentPrice = data.c;
 
-    nvdaPrice.innerHTML=  currentPrice;
+    elements.nvdaPrice.innerHTML=  currentPrice;
 
     request = await fetch(`https://finnhub.io/api/v1/quote?symbol=VOO&token=${FINNHUB_API_KEY}`);
     data = await request.json();
     currentPrice = data.c;
 
-    vooPrice.innerHTML=  currentPrice;
+    elements.vooPrice.innerHTML=  currentPrice;
 
   })();
 
@@ -94,47 +93,47 @@ socket.addEventListener('message', function (event) {
 
     if (data.s == "AAPL") {
         pricesPerSymbol[0]=  data.p;
-        aaplScroll.innerHTML= "AAPL: " + data.p + " |";
+        elements.aaplScroll.innerHTML= "AAPL: " + data.p + " |";
     }
     if (data.s == "MSFT") {
         pricesPerSymbol[1]=  data.p;
-        msftScroll.innerHTML= "MSFT: " + data.p + " |";
+        elements.msftScroll.innerHTML= "MSFT: " + data.p + " |";
     }
     if (data.s == "NVDA") {
         pricesPerSymbol[2]=  data.p;
-        nvdaScroll.innerHTML= "NVDA: " + data.p + " |";
+        elements.nvdaScroll.innerHTML= "NVDA: " + data.p + " |";
     }
      if (data.s == "AMZN") {
         pricesPerSymbol[3]=  data.p;
-        amznScroll.innerHTML= "AMZN: " + data.p + " |";
+        elements.amznScroll.innerHTML= "AMZN: " + data.p + " |";
     }
      if (data.s == "GOOGL") {
         pricesPerSymbol[4]=  data.p;
-        googlScroll.innerHTML= "GOOGL: " + data.p + " |";
+        elements.googlScroll.innerHTML= "GOOGL: " + data.p + " |";
     }
      if (data.s == "META") {
         pricesPerSymbol[5]=  data.p;
-        metaScroll.innerHTML= "META: " + data.p + " |";
+        elements.metaScroll.innerHTML= "META: " + data.p + " |";
     }
      if (data.s == "TSLA") {
         pricesPerSymbol[6]=  data.p;
-        tslaScroll.innerHTML= "TSLA: " + data.p + " |";
+        elements.tslaScroll.innerHTML= "TSLA: " + data.p + " |";
     }
      if (data.s == "AMD") {
         pricesPerSymbol[7]=  data.p;
-        amdScroll.innerHTML= "AMD: " + data.p + " |";
+        elements.amdScroll.innerHTML= "AMD: " + data.p + " |";
     }
      if (data.s == "NFLX") {
         pricesPerSymbol[8]=  data.p;
-        nflxScroll.innerHTML= "NFLX: " + data.p + " |";
+        elements.nflxScroll.innerHTML= "NFLX: " + data.p + " |";
     }
      if (data.s == "VOO") {
         pricesPerSymbol[9]=  data.p;
-        vooScroll.innerHTML= "VOO: " + data.p + " |";
+        elements.vooScroll.innerHTML= "VOO: " + data.p + " |";
     }
     if (data.s == "BINANCE:BTCUSDT") {
-        binancePrice.innerHTML=  data.p;
-        binanceScroll.innerHTML= "BINANCE: " + data.p + " |";
+        elements.binancePrice.innerHTML=  data.p;
+        elements.binanceScroll.innerHTML= "BINANCE: " + data.p + " |";
     }
 });
 
@@ -147,7 +146,7 @@ socket.addEventListener('message', function (event) {
    Alpha Vantage Date-Ranged Stock Data
 ======================== */
 
-INPUT_FORM.addEventListener('submit', async (event) => {
+elements.inputForm.addEventListener('submit', async (event) => {
 
     event.preventDefault();
 
@@ -184,7 +183,7 @@ INPUT_FORM.addEventListener('submit', async (event) => {
 		======================== */
 
         const tableBody = document.getElementById('stock-info-table-body');
-        tableBody.innerHTML="";
+        elements.tableBody.innerHTML="";
 
 
 
@@ -316,16 +315,16 @@ INPUT_FORM.addEventListener('submit', async (event) => {
 
     console.log(pricesPerSymbol);
 
-    aaplScroll.innerHTML= "AAPL: " + pricesPerSymbol[0] + " |";
-    msftScroll.innerHTML= "MSFT: " + pricesPerSymbol[1] + " |";
-    nvdaScroll.innerHTML= "NVDA: " + pricesPerSymbol[2] + " |";
-    amznScroll.innerHTML= "AMZN: " + pricesPerSymbol[3] + " |";
-    googlScroll.innerHTML= "GOOGL: " + pricesPerSymbol[4] + " |";
-    metaScroll.innerHTML= "META: " + pricesPerSymbol[5] + " |";
-    tslaScroll.innerHTML= "TSLA: " + pricesPerSymbol[6] + " |";
-    amdScroll.innerHTML= "AMD: " + pricesPerSymbol[7] + " |";
-    nflxScroll.innerHTML= "NFLX: " + pricesPerSymbol[8] + " |";
-    vooScroll.innerHTML= "VOO: " + pricesPerSymbol[9] + " |";
+    elements.aaplScroll.innerHTML= "AAPL: " + pricesPerSymbol[0] + " |";
+    elements.msftScroll.innerHTML= "MSFT: " + pricesPerSymbol[1] + " |";
+    elements.nvdaScroll.innerHTML= "NVDA: " + pricesPerSymbol[2] + " |";
+    elements.amznScroll.innerHTML= "AMZN: " + pricesPerSymbol[3] + " |";
+    elements.googlScroll.innerHTML= "GOOGL: " + pricesPerSymbol[4] + " |";
+    elements.metaScroll.innerHTML= "META: " + pricesPerSymbol[5] + " |";
+    elements.tslaScroll.innerHTML= "TSLA: " + pricesPerSymbol[6] + " |";
+    elements.amdScroll.innerHTML= "AMD: " + pricesPerSymbol[7] + " |";
+    elements.nflxScroll.innerHTML= "NFLX: " + pricesPerSymbol[8] + " |";
+    elements.vooScroll.innerHTML= "VOO: " + pricesPerSymbol[9] + " |";
     
 
 
