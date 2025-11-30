@@ -7,3 +7,11 @@ export async function fetchFinnhubQuote(symbol) {
     if (!response.ok) throw new Error(`Finnhub error for ${symbol}`);
     return response.json();
   }
+
+export async function fetchAlphaVantageDaily(symbol) {
+    const response = await fetch(
+      `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${config.alphaVantageApiKey}`
+    );
+    if (!response.ok) throw new Error("Alpha Vantage error");
+    return response.json(); 
+}  

@@ -1,38 +1,8 @@
 import { elements } from "./dom.js";
 import { config } from "./config.js";
-import { fetchFinnhubQuote } from "./api-service.js";
+import { fetchFinnhubQuote, fetchAlphaVantageDaily} from "./api-service.js";
 
 let pricesPerSymbol = [0,0,0,0,0,0,0,0,0,0];
-
-
-
-
-//DOM ELEMENTS
-
-// const INPUT_FORM = document.getElementById('input-form');
-
-// let aaplPrice = document.getElementById("aapl-price");
-
-// let binancePrice = document.getElementById("binance-price");
-
-
-// let vooPrice = document.getElementById("voo-price");
-
-// let nvdaPrice = document.getElementById("nvda-price");
-
-// let aaplScroll = document.getElementById("aapl-scroll");
-// let msftScroll = document.getElementById("msft-scroll");
-// let nvdaScroll = document.getElementById("nvda-scroll");
-// let amznScroll = document.getElementById("amzn-scroll");
-// let googlScroll = document.getElementById("googl-scroll");
-// let metaScroll = document.getElementById("meta-scroll");
-// let tslaScroll = document.getElementById("tsla-scroll");
-// let amdScroll = document.getElementById("amd-scroll");
-// let nflxScroll = document.getElementById("nflx-scroll");
-// let vooScroll = document.getElementById("voo-scroll");
-// let binanceScroll = document.getElementById("binance-scroll");
-
-
 
 
 /* =======================
@@ -57,26 +27,7 @@ let pricesPerSymbol = [0,0,0,0,0,0,0,0,0,0];
     catch (err) {
       console.log("Error populating h3 prices", err);
     }
-    
 
-//     console.log("LOOK HEREEEEEE");
-//     let request = await fetch(`https://finnhub.io/api/v1/quote?symbol=AAPL&token=${config.finnhubApiKey}`);
-//     let data = await request.json();
-//     let currentPrice = data.c;
-
-//     elements.aaplPrice.innerHTML=  currentPrice;
-
-//     request = await fetch(`https://finnhub.io/api/v1/quote?symbol=NVDA&token=${config.finnhubApiKey}`);
-//     data = await request.json();
-//     currentPrice = data.c;
-
-//     elements.nvdaPrice.innerHTML=  currentPrice;
-
-//     request = await fetch(`https://finnhub.io/api/v1/quote?symbol=VOO&token=${config.finnhubApiKey}`);
-//     data = await request.json();
-//     currentPrice = data.c;
-
-//     elements.vooPrice.innerHTML=  currentPrice;
 
 })();
 
@@ -166,19 +117,12 @@ elements.inputForm.addEventListener('submit', async (event) => {
 
     event.preventDefault();
 
-    let ticker = document.getElementById('ticker').value.trim().toUpperCase();
-    let start = document.getElementById('start').value.trim();
-    let end = document.getElementById('end').value.trim();;
+    let ticker = elements.tickerInput.value.trim().toUpperCase();
+    let start = elements.startInput.value.trim();
+    let end = elements.endInput.value.trim();;
 
     try {
-        const res = await fetch('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' + ticker + '&apikey=' + config.alphavantageApiKey, {
-            method: 'GET',
-            headers: {
-               'Content-Type' : 'application/json'
-            } 
-        });
-
-        const data = await res.json();
+        let data = await fetchAlphaVantageDaily(ticker);
 
         const DAILY_TIME_SERIES = data['Time Series (Daily)'];
 
