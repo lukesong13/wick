@@ -1,5 +1,6 @@
 import { elements } from "./dom.js";
 import { config } from "./config.js";
+import { fetchFinnhubQuote } from "./api-service.js";
 
 let pricesPerSymbol = [0,0,0,0,0,0,0,0,0,0];
 
@@ -39,26 +40,45 @@ let pricesPerSymbol = [0,0,0,0,0,0,0,0,0,0];
 ======================== */
 
   (async function () {
-    console.log("LOOK HEREEEEEE");
-    let request = await fetch(`https://finnhub.io/api/v1/quote?symbol=AAPL&token=${config.finnhubApiKey}`);
-    let data = await request.json();
-    let currentPrice = data.c;
 
-    elements.aaplPrice.innerHTML=  currentPrice;
+    try {
+        let data = await fetchFinnhubQuote("AAPL");
+        let currentPrice = data.c;
+        elements.aaplPrice.innerHTML = currentPrice;
 
-    request = await fetch(`https://finnhub.io/api/v1/quote?symbol=NVDA&token=${config.finnhubApiKey}`);
-    data = await request.json();
-    currentPrice = data.c;
+        data = await fetchFinnhubQuote("NVDA");
+        currentPrice = data.c;
+        elements.nvdaPrice.innerHTML = currentPrice;
 
-    elements.nvdaPrice.innerHTML=  currentPrice;
+        data = await fetchFinnhubQuote("VOO");
+        currentPrice = data.c;
+        elements.vooPrice.innerHTML = currentPrice;
+    }
+    catch (err) {
+      console.log("Error populating h3 prices", err);
+    }
+    
 
-    request = await fetch(`https://finnhub.io/api/v1/quote?symbol=VOO&token=${config.finnhubApiKey}`);
-    data = await request.json();
-    currentPrice = data.c;
+//     console.log("LOOK HEREEEEEE");
+//     let request = await fetch(`https://finnhub.io/api/v1/quote?symbol=AAPL&token=${config.finnhubApiKey}`);
+//     let data = await request.json();
+//     let currentPrice = data.c;
 
-    elements.vooPrice.innerHTML=  currentPrice;
+//     elements.aaplPrice.innerHTML=  currentPrice;
 
-  })();
+//     request = await fetch(`https://finnhub.io/api/v1/quote?symbol=NVDA&token=${config.finnhubApiKey}`);
+//     data = await request.json();
+//     currentPrice = data.c;
+
+//     elements.nvdaPrice.innerHTML=  currentPrice;
+
+//     request = await fetch(`https://finnhub.io/api/v1/quote?symbol=VOO&token=${config.finnhubApiKey}`);
+//     data = await request.json();
+//     currentPrice = data.c;
+
+//     elements.vooPrice.innerHTML=  currentPrice;
+
+})();
 
 /* =======================
    Live Prices via Finnhub Web Socket
