@@ -1,10 +1,6 @@
 import { elements } from "./dom.js";
+import { config } from "./config.js";
 
-//CONFIG
-const FINNHUB_API_KEY = "d1ld5l1r01qt4thffdogd1ld5l1r01qt4thffdp0";
-const FINNHUB_WEBSOCKET_URL = 'wss://ws.finnhub.io?token=' + FINNHUB_API_KEY;
-const ALPHAVANTAGE_APIKEY = "ZFLQ8S4SFW1ZYYND";
-const SYMBOLS = ["AAPL","MSFT","NVDA","AMZN","GOOGL","META","TSLA","AMD","NFLX","VOO"];
 let pricesPerSymbol = [0,0,0,0,0,0,0,0,0,0];
 
 
@@ -44,19 +40,19 @@ let pricesPerSymbol = [0,0,0,0,0,0,0,0,0,0];
 
   (async function () {
     console.log("LOOK HEREEEEEE");
-    let request = await fetch(`https://finnhub.io/api/v1/quote?symbol=AAPL&token=${FINNHUB_API_KEY}`);
+    let request = await fetch(`https://finnhub.io/api/v1/quote?symbol=AAPL&token=${config.finnhubApiKey}`);
     let data = await request.json();
     let currentPrice = data.c;
 
     elements.aaplPrice.innerHTML=  currentPrice;
 
-    request = await fetch(`https://finnhub.io/api/v1/quote?symbol=NVDA&token=${FINNHUB_API_KEY}`);
+    request = await fetch(`https://finnhub.io/api/v1/quote?symbol=NVDA&token=${config.finnhubApiKey}`);
     data = await request.json();
     currentPrice = data.c;
 
     elements.nvdaPrice.innerHTML=  currentPrice;
 
-    request = await fetch(`https://finnhub.io/api/v1/quote?symbol=VOO&token=${FINNHUB_API_KEY}`);
+    request = await fetch(`https://finnhub.io/api/v1/quote?symbol=VOO&token=${config.finnhubApiKey}`);
     data = await request.json();
     currentPrice = data.c;
 
@@ -68,7 +64,7 @@ let pricesPerSymbol = [0,0,0,0,0,0,0,0,0,0];
    Live Prices via Finnhub Web Socket
 ======================== */
 
-let socket = new WebSocket(FINNHUB_WEBSOCKET_URL);
+let socket = new WebSocket(config.finnhubWebsocketUrl);
 socket.addEventListener('open', function (event) {
     socket.send(JSON.stringify({'type':'subscribe', 'symbol': 'AAPL'}))
     socket.send(JSON.stringify({'type':'subscribe', 'symbol': 'MSFT'}))
@@ -155,7 +151,7 @@ elements.inputForm.addEventListener('submit', async (event) => {
     let end = document.getElementById('end').value.trim();;
 
     try {
-        const res = await fetch('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' + ticker + '&apikey=' + ALPHAVANTAGE_APIKEY, {
+        const res = await fetch('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' + ticker + '&apikey=' + config.alphavantageApiKey, {
             method: 'GET',
             headers: {
                'Content-Type' : 'application/json'
@@ -175,15 +171,15 @@ elements.inputForm.addEventListener('submit', async (event) => {
     			return acc;
   			}, {});
       
-        console.log("FILTERRED ENTRIES");    
+        console.log("FILTERED ENTRIES");    
       	console.log(FILTERED_ENTRIES);
         
         /* =======================
    			Table Rendering
 		======================== */
 
-        const tableBody = document.getElementById('stock-info-table-body');
-        elements.tableBody.innerHTML="";
+        // const tableBody = document.getElementById('stock-info-table-body');
+        elements.stockInfoTableBody.innerHTML="";
 
 
 
@@ -248,7 +244,7 @@ elements.inputForm.addEventListener('submit', async (event) => {
             row.appendChild(closeTd);
             row.appendChild(volumeTd);
 
-            tableBody.appendChild(row);
+            elements.stockInfoTableBody.appendChild(row);
 
             document.getElementById('stock-info').style.display = 'table';
         });
@@ -306,8 +302,8 @@ elements.inputForm.addEventListener('submit', async (event) => {
  (async function () {
     console.log("STOCK SYMBOLS FOR THE SCROLL");
 
-    for (let i=0; i<SYMBOLS.length; i++) {
-        let request = await fetch(`https://finnhub.io/api/v1/quote?symbol=${SYMBOLS[i]}&token=${FINNHUB_API_KEY}`);
+    for (let i=0; i<config.symbols.length; i++) {
+        let request = await fetch(`https://finnhub.io/api/v1/quote?symbol=${config.symbols[i]}&token=${config.finnhubApiKey}`);
         let data = await request.json();
         let currentPrice = data.c;
         pricesPerSymbol[i] = currentPrice;
