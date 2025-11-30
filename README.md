@@ -85,6 +85,12 @@ just use this for all requests.
 6. Only keep scroll if screen size is large enough (disable for mobile)
 7. handle actual scrolling feature
 
+* Move websocket to finnhub-websocket.js
+* Modularize websocket
+* Modularize chart render
+* Modularize the ticker scroll
+
+
 
 
 

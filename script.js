@@ -35,6 +35,9 @@ let pricesPerSymbol = [0,0,0,0,0,0,0,0,0,0];
    Live Prices via Finnhub Web Socket
 ======================== */
 
+//TODO: move this initializattion into finnhub-websocket.js
+
+
 let socket = new WebSocket(config.finnhubWebsocketUrl);
 socket.addEventListener('open', function (event) {
     socket.send(JSON.stringify({'type':'subscribe', 'symbol': 'AAPL'}))
