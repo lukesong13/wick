@@ -22,6 +22,18 @@ export const elements = {
     tslaScroll: document.getElementById("tsla-scroll"),
     amdScroll: document.getElementById("amd-scroll"),
     nflxScroll: document.getElementById("nflx-scroll"),
+
+    aaplScroll2: document.getElementById("aapl-scroll2"),
+    vooScroll2: document.getElementById("voo-scroll2"),
+    nvdaScroll2: document.getElementById("nvda-scroll2"),
+    binanceScroll2: document.getElementById("binance-scroll2"),
+    msftScroll2: document.getElementById("msft-scroll2"),
+    amznScroll2: document.getElementById("amzn-scroll2"),
+    googlScroll2: document.getElementById("googl-scroll2"),
+    metaScroll2: document.getElementById("meta-scroll2"),
+    tslaScroll2: document.getElementById("tsla-scroll2"),
+    amdScroll2: document.getElementById("amd-scroll2"),
+    nflxScroll2: document.getElementById("nflx-scroll2"),
   
     stockInfoTable: document.getElementById("stock-info"),
     stockInfoTableBody: document.getElementById("stock-info-table-body"),

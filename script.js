@@ -292,6 +292,16 @@ elements.inputForm.addEventListener('submit', async (event) => {
     elements.nflxScroll.innerHTML= "NFLX: " + pricesPerSymbol[8] + " |";
     elements.vooScroll.innerHTML= "VOO: " + pricesPerSymbol[9] + " |";
     
+    elements.aaplScroll2.innerHTML= "AAPL: " + pricesPerSymbol[0] + " |";
+    elements.msftScroll2.innerHTML= "MSFT: " + pricesPerSymbol[1] + " |";
+    elements.nvdaScroll2.innerHTML= "NVDA: " + pricesPerSymbol[2] + " |";
+    elements.amznScroll2.innerHTML= "AMZN: " + pricesPerSymbol[3] + " |";
+    elements.googlScroll2.innerHTML= "GOOGL: " + pricesPerSymbol[4] + " |";
+    elements.metaScroll2.innerHTML= "META: " + pricesPerSymbol[5] + " |";
+    elements.tslaScroll2.innerHTML= "TSLA: " + pricesPerSymbol[6] + " |";
+    elements.amdScroll2.innerHTML= "AMD: " + pricesPerSymbol[7] + " |";
+    elements.nflxScroll2.innerHTML= "NFLX: " + pricesPerSymbol[8] + " |";
+    elements.vooScroll2.innerHTML= "VOO: " + pricesPerSymbol[9] + " |";
 
 
  })();
